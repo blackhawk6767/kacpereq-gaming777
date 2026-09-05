@@ -1,0 +1,958 @@
+```html
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>KacpereQ.gaming</title>
+<meta name="description" content="KacpereQ.gaming — Minecraft, TikTok, serwer i moje projekty.">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;600;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #07040d;
+    color: white;
+    font-family: Inter, Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* TŁO */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background:
+        radial-gradient(circle at 20% 20%, #8a21ff33, transparent 30%),
+        radial-gradient(circle at 80% 70%, #c43cff22, transparent 30%),
+        #07040d;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    opacity: .12;
+    background-image:
+        linear-gradient(#ffffff 1px, transparent 1px),
+        linear-gradient(90deg, #ffffff 1px, transparent 1px);
+    background-size: 55px 55px;
+    mask-image: linear-gradient(to bottom, black, transparent);
+}
+
+/* NAVIGACJA */
+
+nav {
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(1100px, calc(100% - 25px));
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 14px 20px;
+
+    background: #100a18cc;
+    border: 1px solid #ffffff18;
+    border-radius: 20px;
+
+    backdrop-filter: blur(20px);
+
+    z-index: 100;
+
+    box-shadow: 0 0 35px #8e2aff18;
+}
+
+.logo {
+    font-family: Orbitron;
+    font-weight: 900;
+    font-size: 17px;
+}
+
+.logo span {
+    color: #bd4cff;
+}
+
+.navlinks {
+    display: flex;
+    gap: 20px;
+}
+
+.navlinks a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 13px;
+    transition: .2s;
+}
+
+.navlinks a:hover {
+    color: #c45cff;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 120px 20px 70px;
+
+    position: relative;
+}
+
+.orb {
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    border-radius: 50%;
+
+    background: #9c2dff33;
+
+    filter: blur(60px);
+
+    animation: pulse 4s infinite alternate;
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(.9);
+    }
+
+    to {
+        transform: scale(1.3);
+    }
+}
+
+.badge {
+    display: inline-block;
+
+    padding: 9px 15px;
+
+    border-radius: 999px;
+
+    border: 1px solid #c04cff55;
+
+    background: #a528ff0d;
+
+    color: #d99cff;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+h1 {
+    font-family: Orbitron;
+
+    font-size: clamp(43px, 10vw, 100px);
+
+    line-height: 1;
+
+    margin: 25px 0 20px;
+
+    text-shadow:
+        0 0 20px #a629ff88,
+        0 0 60px #a629ff44;
+}
+
+h1 span {
+    color: #c14cff;
+}
+
+.hero p {
+    max-width: 650px;
+
+    margin: auto;
+
+    color: #999;
+
+    line-height: 1.7;
+}
+
+/* PRZYCISKI */
+
+.buttons {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+    margin-top: 30px;
+}
+
+.btn {
+    border: 1px solid #ffffff18;
+
+    background: #ffffff08;
+
+    color: white;
+
+    padding: 13px 20px;
+
+    border-radius: 13px;
+
+    font-weight: 800;
+
+    font-size: 14px;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition: .25s;
+}
+
+.btn:hover {
+    transform: translateY(-4px);
+
+    box-shadow: 0 10px 35px #8d24ff33;
+}
+
+.primary {
+    background: linear-gradient(135deg, #8621ff, #d04cff);
+
+    box-shadow: 0 0 30px #9c2dff55;
+}
+
+/* SEKCJE */
+
+section {
+    width: min(1100px, calc(100% - 28px));
+
+    margin: auto;
+
+    padding: 80px 0;
+}
+
+.section-title {
+    font-family: Orbitron;
+
+    font-size: 28px;
+
+    margin-bottom: 10px;
+}
+
+.sub {
+    color: #777;
+
+    margin-bottom: 28px;
+}
+
+/* KARTY */
+
+.grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 16px;
+}
+
+.card {
+    padding: 25px;
+
+    border-radius: 22px;
+
+    border: 1px solid #ffffff12;
+
+    background:
+        linear-gradient(145deg, #16101f, #0b080f);
+
+    box-shadow: 0 10px 40px #0007;
+
+    transition: .25s;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+
+    border-color: #b33dff66;
+
+    box-shadow:
+        0 15px 50px #8d24ff22;
+}
+
+.icon {
+    font-size: 30px;
+
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    margin-bottom: 9px;
+}
+
+.card p {
+    color: #999;
+
+    line-height: 1.6;
+
+    font-size: 14px;
+}
+
+.handle {
+    display: inline-block;
+
+    margin-top: 15px;
+
+    color: #c85cff;
+
+    font-weight: 800;
+}
+
+/* SERWER */
+
+.server {
+    position: relative;
+
+    overflow: hidden;
+}
+
+.server::before {
+    content: "";
+
+    position: absolute;
+
+    width: 200px;
+    height: 200px;
+
+    right: -80px;
+    top: -80px;
+
+    border-radius: 50%;
+
+    background: #a52cff18;
+}
+
+.status {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin: 15px 0;
+
+    color: #aaa;
+
+    font-size: 13px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    background: #777;
+
+    box-shadow: 0 0 12px #777;
+}
+
+.ip {
+    background: #050308;
+
+    border: 1px solid #ffffff12;
+
+    padding: 13px;
+
+    border-radius: 10px;
+
+    color: #ddd;
+
+    font-family: monospace;
+
+    word-break: break-all;
+}
+
+.copy {
+    margin-top: 12px;
+
+    width: 100%;
+}
+
+/* STATYSTYKI */
+
+.stats {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 16px;
+}
+
+.stat {
+    text-align: center;
+
+    padding: 22px;
+
+    border-radius: 18px;
+
+    border: 1px solid #ffffff10;
+
+    background: #ffffff06;
+}
+
+.stat b {
+    display: block;
+
+    font-family: Orbitron;
+
+    font-size: 28px;
+
+    color: #c45bff;
+
+    margin-bottom: 6px;
+}
+
+.stat span {
+    color: #888;
+
+    font-size: 12px;
+}
+
+/* STOPKA */
+
+footer {
+    text-align: center;
+
+    padding: 55px 20px;
+
+    border-top: 1px solid #ffffff0d;
+
+    color: #666;
+
+    font-size: 13px;
+}
+
+footer strong {
+    color: #bd4dff;
+}
+
+/* TELEFON */
+
+@media(max-width: 760px) {
+
+    .navlinks {
+        display: none;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    h1 {
+        font-size: 48px;
+    }
+}
+
+@media(max-width: 430px) {
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        top: 8px;
+    }
+
+    .logo {
+        font-size: 14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGACJA -->
+
+<nav>
+
+    <div class="logo">
+        KacpereQ<span>.gaming</span>
+    </div>
+
+    <div class="navlinks">
+
+        <a href="#about">O mnie</a>
+
+        <a href="#social">Social</a>
+
+        <a href="#server">Serwer</a>
+
+        <a href="#projects">Projekty</a>
+
+    </div>
+
+</nav>
+
+
+<!-- GŁÓWNA -->
+
+<header class="hero">
+
+    <div class="orb"></div>
+
+    <div>
+
+        <div class="badge">
+            WELCOME TO MY DIGITAL WORLD
+        </div>
+
+        <h1>
+            KacpereQ<span>.gaming</span>
+        </h1>
+
+        <p>
+            Moje miejsce w sieci — TikTok, Minecraft,
+            serwer i moje projekty. Wszystko w jednym miejscu. 🎮
+        </p>
+
+        <div class="buttons">
+
+            <a class="btn primary" href="#social">
+                🚀 Odkryj stronę
+            </a>
+
+            <a class="btn" href="#server">
+                ⛏️ Mój serwer
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- O MNIE -->
+
+<section id="about">
+
+    <div class="section-title">
+        👤 O mnie
+    </div>
+
+    <div class="sub">
+        KacpereQ.gaming — moje miejsce w internecie.
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+
+            <div class="icon">🎮</div>
+
+            <h3>Gaming</h3>
+
+            <p>
+                Minecraft, gry i różne gamingowe projekty.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">📱</div>
+
+            <h3>Twórczość</h3>
+
+            <p>
+                Filmy, memy i inne rzeczy związane z moim TikTokiem.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">⚡</div>
+
+            <h3>Projekty</h3>
+
+            <p>
+                Strony, gry, serwery Minecraft i kolejne pomysły.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SOCIAL -->
+
+<section id="social">
+
+    <div class="section-title">
+        📱 Social Media
+    </div>
+
+    <div class="sub">
+        Znajdź mnie w sieci.
+    </div>
+
+    <div class="grid">
+
+
+        <div class="card">
+
+            <div class="icon">🎵</div>
+
+            <h3>TikTok</h3>
+
+            <p>
+                Mój profil na TikToku.
+            </p>
+
+            <a
+                class="handle"
+                href="https://www.tiktok.com/@kacpereq004"
+                target="_blank"
+            >
+                @kacpereq004 ↗
+            </a>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">⛏️</div>
+
+            <h3>Minecraft</h3>
+
+            <p>
+                Moje nicki Minecraft:
+            </p>
+
+            <div class="handle">
+                black_hawk
+            </div>
+
+            <br>
+
+            <div class="handle">
+                Itzz_KacpereQ
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🌐</div>
+
+            <h3>KacpereQ.gaming</h3>
+
+            <p>
+                Moje centrum gamingowe w internecie.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SERWER -->
+
+<section id="server">
+
+    <div class="section-title">
+        🖥️ Anarchia2_0
+    </div>
+
+    <div class="sub">
+        Mój serwer Minecraft.
+    </div>
+
+
+    <div class="card server">
+
+        <h3>
+            🔥 Anarchia2_0
+        </h3>
+
+
+        <div class="status">
+
+            <span class="dot" id="dot"></span>
+
+            <span id="statusText">
+                Sprawdzanie statusu…
+            </span>
+
+        </div>
+
+
+        <div class="ip">
+            anarchia2_0.aternos.me
+        </div>
+
+
+        <button
+            class="btn primary copy"
+            onclick="copyIP()"
+        >
+            📋 Skopiuj IP
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- PROJEKTY -->
+
+<section id="projects">
+
+    <div class="section-title">
+        🚀 Projekty
+    </div>
+
+    <div class="sub">
+        Moje projekty i pomysły.
+    </div>
+
+
+    <div class="grid">
+
+
+        <div class="card">
+
+            <div class="icon">🎮</div>
+
+            <h3>KQ Games</h3>
+
+            <p>
+                Projekty związane z tworzeniem gier.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🛠️</div>
+
+            <h3>Nowe projekty</h3>
+
+            <p>
+                Miejsce na moje kolejne pomysły.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">✨</div>
+
+            <h3>Coming soon</h3>
+
+            <p>
+                Jeszcze więcej rzeczy pojawi się tutaj.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- STATYSTYKI -->
+
+<section>
+
+    <div class="stats">
+
+        <div class="stat">
+
+            <b>2</b>
+
+            <span>
+                Nicki Minecraft
+            </span>
+
+        </div>
+
+
+        <div class="stat">
+
+            <b>1</b>
+
+            <span>
+                Serwer
+            </span>
+
+        </div>
+
+
+        <div class="stat">
+
+            <b>∞</b>
+
+            <span>
+                Pomysłów
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- STOPKA -->
+
+<footer>
+
+    <strong>
+        KacpereQ.gaming
+    </strong>
+
+    • Gaming • Minecraft • TikTok
+
+    <br><br>
+
+    © 2026 KacpereQ
+
+</footer>
+
+
+<script>
+
+/* KOPIOWANIE IP */
+
+function copyIP() {
+
+    navigator.clipboard.writeText(
+        "anarchia2_0.aternos.me"
+    );
+
+    const button =
+        document.querySelector(".copy");
+
+    const oldText =
+        button.textContent;
+
+    button.textContent =
+        "✅ Skopiowano!";
+
+    setTimeout(() => {
+
+        button.textContent =
+            oldText;
+
+    }, 1600);
+}
+
+
+/* STATUS SERWERA */
+
+async function checkServer() {
+
+    const dot =
+        document.getElementById("dot");
+
+    const text =
+        document.getElementById("statusText");
+
+    try {
+
+        const response =
+            await fetch(
+                "https://api.mcsrvstat.us/3/anarchia2_0.aternos.me"
+            );
+
+        const data =
+            await response.json();
+
+
+        if (data.online) {
+
+            dot.style.background =
+                "#39ff88";
+
+            dot.style.boxShadow =
+                "0 0 12px #39ff88";
+
+            text.textContent =
+                "🟢 Online • " +
+                (data.players?.online ?? 0) +
+                "/" +
+                (data.players?.max ?? "?") +
+                " graczy";
+
+        } else {
+
+            dot.style.background =
+                "#ff4d6d";
+
+            dot.style.boxShadow =
+                "0 0 12px #ff4d6d";
+
+            text.textContent =
+                "🔴 Offline";
+
+        }
+
+    } catch {
+
+        text.textContent =
+            "⚪ Nie udało się sprawdzić statusu";
+
+    }
+}
+
+
+checkServer();
+
+setInterval(
+    checkServer,
+    30000
+);
+
+</script>
+
+</body>
+</html>
+```

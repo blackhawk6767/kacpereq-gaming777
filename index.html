@@ -2,284 +2,476 @@
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>KacpereQ Gaming</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
-*{box-sizing:border-box}
+:root{
+ --bg:#080610;
+ --panel:rgba(24,17,39,.72);
+ --purple:#a855f7;
+ --pink:#d946ef;
+ --text:#f7f1ff;
+ --muted:#aaa0bd;
+ --border:rgba(180,100,255,.2);
+}
+*{box-sizing:border-box;scroll-behavior:smooth}
 body{
- margin:0;background:#090711;color:white;
- font-family:Arial,sans-serif;
+ margin:0;background:var(--bg);color:var(--text);
+ font-family:Inter,sans-serif;overflow-x:hidden;
 }
-header{
- position:sticky;top:0;z-index:10;
- background:#100b1ddd;backdrop-filter:blur(15px);
- padding:18px 6%;border-bottom:1px solid #392052;
- display:flex;justify-content:space-between;align-items:center;
+#particles{position:fixed;inset:0;z-index:-1;pointer-events:none}
+.particle{
+ position:absolute;width:3px;height:3px;border-radius:50%;
+ background:#bd78ff;opacity:.55;
+ animation:float 9s infinite ease-in-out;
 }
-.logo{font-size:23px;font-weight:900;color:#b77aff}
-nav{display:flex;gap:18px;flex-wrap:wrap}
-nav a{color:#ddd;text-decoration:none;font-size:14px}
-nav a:hover{color:#bd83ff}
-.hero{
- padding:100px 7%;text-align:center;
- background:radial-gradient(ellipse,#51218a55,transparent 65%);
+@keyframes float{
+ 0%,100%{transform:translateY(0)}
+ 50%{transform:translateY(-70px)}
 }
-.hero h1{font-size:clamp(40px,8vw,80px);margin:0}
-.hero h1 span{color:#b77aff}
-.hero p{color:#aaa;font-size:17px}
-button,.btn{
- background:linear-gradient(120deg,#9b4dff,#6625a8);
- color:white;border:0;border-radius:10px;
- padding:13px 20px;cursor:pointer;font-weight:bold;
- text-decoration:none;display:inline-block;margin:5px;
+#loader{
+ position:fixed;inset:0;background:#080610;z-index:100;
+ display:flex;align-items:center;justify-content:center;
+ flex-direction:column;transition:opacity .6s;
 }
-section{padding:55px 7%;scroll-margin-top:80px}
-h2{font-size:32px;color:#c18aff}
-.grid{
- display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
- gap:18px;
+.loader-logo{
+ font-family:Orbitron;font-size:35px;color:var(--purple);
+ text-shadow:0 0 25px var(--purple);
+ animation:pulse 1.5s infinite;
 }
-.card{
- background:#171124;border:1px solid #39244f;
- padding:23px;border-radius:17px;
+.loader-bar{width:180px;height:3px;background:#251536;margin-top:20px}
+.loader-bar:after{
+ content:"";display:block;height:100%;width:100%;
+ background:var(--purple);animation:loading 1.3s;
+}
+@keyframes loading{from{width:0}to{width:100%}}
+@keyframes pulse{50%{opacity:.5}}
+nav{
+ position:fixed;top:0;left:0;width:100%;z-index:20;
+ padding:17px 6%;display:flex;align-items:center;
+ justify-content:space-between;
+ background:rgba(8,6,16,.68);backdrop-filter:blur(18px);
+ border-bottom:1px solid var(--border);
+}
+.logo{
+ font-family:Orbitron;font-weight:800;font-size:22px;
+ color:#c084fc;cursor:pointer;
+ text-shadow:0 0 15px #9333ea;
+ user-select:none;
+}
+.navlinks{display:flex;gap:22px;flex-wrap:wrap}
+.navlinks a{
+ color:var(--muted);text-decoration:none;font-size:13px;
  transition:.2s;
 }
-.card:hover{transform:translateY(-5px);border-color:#a45aff}
-.card h3{color:#c99aff}
-.card p{color:#aaa;line-height:1.6}
-.icon{font-size:32px}
-.stats{display:flex;justify-content:center;gap:20px;flex-wrap:wrap}
-.stat{background:#191126;padding:20px;border-radius:14px;min-width:150px}
-.stat b{display:block;font-size:25px;color:#c18aff}
-input,textarea{
- width:100%;padding:12px;margin:7px 0;
- border-radius:9px;border:1px solid #49315f;
- background:#0c0913;color:white;
+.navlinks a:hover{color:white;text-shadow:0 0 12px var(--purple)}
+.hero{
+ min-height:95vh;display:flex;align-items:center;
+ justify-content:center;text-align:center;padding:130px 20px 60px;
+ background:radial-gradient(ellipse at center,#6d28d944,transparent 60%);
 }
-textarea{min-height:90px}
+.tag{
+ color:#c084fc;letter-spacing:4px;font-size:12px;
+ font-weight:700;
+}
+h1{
+ font-family:Orbitron;font-size:clamp(38px,7vw,76px);
+ margin:20px 0;
+}
+.gradient{
+ background:linear-gradient(90deg,#a855f7,#e879f9,#8b5cf6);
+ -webkit-background-clip:text;color:transparent;
+}
+.hero p{color:var(--muted);line-height:1.8}
+.btn{
+ display:inline-block;padding:13px 22px;margin:8px;
+ border-radius:10px;text-decoration:none;color:white;
+ background:linear-gradient(110deg,#9333ea,#6d28d9);
+ border:1px solid #c084fc55;font-weight:700;
+ cursor:pointer;transition:.25s;
+}
+.btn:hover{transform:translateY(-3px);box-shadow:0 0 25px #9333ea77}
+.btn.secondary{background:rgba(255,255,255,.04)}
+section{padding:75px 7%;scroll-margin-top:75px}
+.section-title{
+ font-family:Orbitron;font-size:clamp(25px,4vw,36px);
+ margin-bottom:30px;
+}
+.section-title span{color:#c084fc}
+.grid{
+ display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+ gap:20px;
+}
+.card{
+ background:var(--panel);border:1px solid var(--border);
+ border-radius:17px;padding:25px;
+ backdrop-filter:blur(15px);
+ transition:.3s;position:relative;overflow:hidden;
+}
+.card:before{
+ content:"";position:absolute;inset:0;
+ background:linear-gradient(120deg,#a855f710,transparent 60%);
+ pointer-events:none;
+}
+.card:hover{
+ transform:translateY(-6px);
+ border-color:#a855f7;
+ box-shadow:0 10px 35px #7e22ce25;
+}
+.card h3{font-family:Orbitron;font-size:17px}
+.card p{color:var(--muted);line-height:1.7;font-size:14px}
+.icon{font-size:32px;margin-bottom:12px}
+.stats{
+ display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+ gap:15px;
+}
+.stat{text-align:center}
+.stat b{
+ display:block;font-family:Orbitron;font-size:27px;
+ color:#c084fc;margin-bottom:8px;
+}
+.stat span{font-size:12px;color:var(--muted)}
+.news-item{padding:15px 0;border-bottom:1px solid var(--border)}
+.news-item:last-child{border:0}
+.notice{
+ display:none;padding:15px;text-align:center;
+ background:#7e22ce33;border-bottom:1px solid var(--border);
+ color:#e9d5ff;margin-top:65px;
+}
+.status-dot{
+ display:inline-block;width:9px;height:9px;
+ border-radius:50%;background:#aaa;margin-right:8px;
+}
 footer{
- padding:35px;text-align:center;background:#07050c;
- border-top:1px solid #392052;color:#999;
+ border-top:1px solid var(--border);padding:35px 7%;
+ text-align:center;color:var(--muted);
 }
+footer .logo{margin-bottom:15px}
 .modal{
- display:none;position:fixed;inset:0;z-index:30;
- background:#000d;align-items:center;justify-content:center;padding:15px;
+ display:none;position:fixed;inset:0;z-index:50;
+ background:#000d;align-items:center;justify-content:center;
+ padding:15px;
 }
 .box{
- background:#171124;border:1px solid #9b5cff;
- border-radius:18px;padding:25px;width:min(450px,100%);
+ background:#110c1c;border:1px solid #a855f7;
+ border-radius:18px;padding:25px;width:min(480px,100%);
  max-height:90vh;overflow:auto;
+ box-shadow:0 0 50px #7e22ce44;
 }
+input,textarea{
+ width:100%;padding:13px;margin:7px 0;
+ color:white;background:#090611;
+ border:1px solid #51336d;border-radius:9px;
+ font:inherit;
+}
+textarea{min-height:80px}
 .keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .keypad button{font-size:20px}
-.pin{font-size:30px;letter-spacing:12px;text-align:center;margin:20px}
-.hidden{display:none}
-.small{font-size:12px;color:#999}
-.news{border-bottom:1px solid #392052;padding:12px 0}
-@media(max-width:650px){
- header{align-items:flex-start;gap:12px;flex-direction:column}
- nav{gap:12px}
- .hero{padding:70px 5%}
- section{padding:40px 5%}
+.pin{text-align:center;font-size:30px;letter-spacing:10px;padding:15px}
+.hidden{display:none!important}
+.small{font-size:11px;color:#81768f;line-height:1.6}
+#egg{
+ display:none;position:fixed;inset:0;z-index:90;
+ background:#080610f5;align-items:center;justify-content:center;
+ text-align:center;padding:20px;
+}
+#egg h2{
+ font-family:Orbitron;font-size:clamp(30px,7vw,60px);
+ color:#d8b4fe;text-shadow:0 0 35px #a855f7;
+}
+#egg p{color:#c4b5d4}
+.reveal{animation:reveal .8s both}
+@keyframes reveal{
+ from{opacity:0;transform:translateY(25px)}
+ to{opacity:1;transform:translateY(0)}
+}
+@media(max-width:700px){
+ nav{align-items:flex-start;gap:12px;flex-direction:column}
+ .navlinks{gap:12px}
+ section{padding:55px 5%}
 }
 </style>
 </head>
+
 <body>
+<div id="particles"></div>
 
-<header>
- <div class="logo">KACPEREQ GAMING</div>
- <nav>
-  <a href="#projekty">Projekty</a>
-  <a href="#news">Aktualności</a>
-  <a href="#serwery">Serwery</a>
-  <a href="#studio">Studio</a>
-  <a href="#setup">Setup</a>
- </nav>
-</header>
-
-<div class="hero">
- <p>OFICJALNA STRONA KACPEREQ</p>
- <h1>WELCOME TO<br><span>KACPEREQ GAMING</span></h1>
- <p>Gaming • Technologie • Projekty • Kreatywność</p>
- <a class="btn" href="#projekty">ODKRYJ PROJEKTY</a>
- <a class="btn" href="https://www.tiktok.com/@kacpereq004" target="_blank">TIKTOK</a>
+<div id="loader">
+ <div class="loader-logo">KQ GAMING</div>
+ <div class="loader-bar"></div>
+ <p class="small">LOADING EXPERIENCE...</p>
 </div>
 
-<section>
- <h2>📊 KQ Dashboard</h2>
- <div class="stats">
-  <div class="stat"><b id="visits">0</b>Odwiedziny na tym urządzeniu</div>
-  <div class="stat"><b id="online">1</b>Aktywne karty lokalnie</div>
-  <div class="stat"><b id="newsCount">0</b>Aktualności</div>
-  <div class="stat"><b id="clock">--:--</b>Godzina</div>
+<div class="notice" id="notice"></div>
+
+<nav>
+ <div class="logo" id="logo">KQ</div>
+ <div class="navlinks">
+  <a href="#home">Start</a>
+  <a href="#projects">Projekty</a>
+  <a href="#news">News</a>
+  <a href="#minecraft">Minecraft</a>
+  <a href="#studio">Studio</a>
+  <a href="#setup">Setup</a>
  </div>
- <p class="small">Liczniki odwiedzin i aktywnych kart są lokalne. Globalne statystyki wymagają bazy danych.</p>
+</nav>
+
+<main>
+<section class="hero" id="home">
+ <div>
+  <div class="tag">WELCOME TO MY WORLD</div>
+  <h1>KACPEREQ<br><span class="gradient">GAMING</span></h1>
+  <p>Gaming. Technologie. Kreatywność.<br>Wszystko w jednym miejscu.</p>
+  <a href="#projects" class="btn">ODKRYJ PROJEKTY</a>
+  <a href="https://www.tiktok.com/@kacpereq004" target="_blank" class="btn secondary">TIKTOK</a>
+  <p class="small">KacpereQ Gaming 2.0</p>
+ </div>
 </section>
 
-<section id="projekty">
- <h2>🚀 Projekty KQ</h2>
+<section>
+ <h2 class="section-title">KQ <span>Dashboard</span></h2>
+ <div class="stats">
+  <div class="card stat"><b id="visits">0</b><span>Odwiedziny lokalne</span></div>
+  <div class="card stat"><b id="online">1</b><span>Aktywne karty lokalnie</span></div>
+  <div class="card stat"><b id="newsCount">0</b><span>Aktualności</span></div>
+  <div class="card stat"><b id="clock">--:--</b><span>Godzina</span></div>
+ </div>
+ <p class="small">Statystyki są lokalne i nie pokazują danych wszystkich odwiedzających stronę.</p>
+</section>
+
+<section id="projects">
+ <h2 class="section-title">Nasze <span>projekty</span></h2>
  <div class="grid">
-  <div class="card"><div class="icon">🎮</div><h3>KQ Games</h3><p>Biblioteka gier przeglądarkowych.</p><a class="btn" href="https://kqcompany777.github.io/KQ-games/">Otwórz</a></div>
-  <div class="card"><div class="icon">🤖</div><h3>KQ AI</h3><p>Własny asystent KQ AI.</p><a class="btn" href="https://blackhawk6767.github.io/KQ-AI/">Otwórz</a></div>
-  <div class="card"><div class="icon">🔥</div><h3>Anarchia 2.0</h3><p>Projekt Minecraft.</p><a class="btn" href="https://blackhawk6767.github.io/anarchia2_0/">Otwórz</a></div>
-  <div class="card"><div class="icon">📰</div><h3>KQ News</h3><p>Aktualności ze świata KQ.</p><a class="btn" href="#news">Czytaj</a></div>
-  <div class="card"><div class="icon">🏆</div><h3>KQ Ranking</h3><p>Ranking graczy.</p><div id="ranking"></div></div>
-  <div class="card"><div class="icon">💜</div><h3>Easter Egg</h3><p>Ukryta niespodzianka. Kliknij logo pięć razy!</p></div>
+  <div class="card reveal"><div class="icon">🎮</div><h3>KQ GAMES</h3><p>Gry przeglądarkowe i rozrywka.</p><a class="btn" href="https://kqcompany777.github.io/KQ-games/">Otwórz</a></div>
+  <div class="card reveal"><div class="icon">🤖</div><h3>KQ AI</h3><p>Własny asystent sztucznej inteligencji.</p><a class="btn" href="https://blackhawk6767.github.io/KQ-AI/">Otwórz</a></div>
+  <div class="card reveal"><div class="icon">🔥</div><h3>ANARCHIA 2.0</h3><p>Projekt związany z Minecraftem.</p><a class="btn" href="https://blackhawk6767.github.io/anarchia2_0/">Otwórz</a></div>
+  <div class="card reveal"><div class="icon">📰</div><h3>KQ NEWS</h3><p>Aktualności i komunikaty.</p><a class="btn" href="#news">Czytaj</a></div>
+  <div class="card reveal"><div class="icon">🏆</div><h3>KQ RANKING</h3><p>Ranking graczy i ich punktów.</p><div id="ranking"></div></div>
  </div>
 </section>
 
 <section id="news">
- <h2>📰 Aktualności</h2>
+ <h2 class="section-title">KQ <span>News</span></h2>
  <div class="card" id="newsList"></div>
 </section>
 
-<section id="serwery">
- <h2>📡 Serwery Minecraft</h2>
+<section id="minecraft">
+ <h2 class="section-title">Minecraft <span>Server</span></h2>
  <div class="card">
-  <h3 id="serverStatus">Sprawdzanie statusu...</h3>
-  <p id="serverInfo">Pobieranie informacji...</p>
-  <button onclick="loadServer()">Odśwież status</button>
-  <p class="small">Adres: anarchia2_0.aternos.me</p>
+  <h3><span class="status-dot" id="serverDot"></span><span id="serverStatus">Sprawdzanie...</span></h3>
+  <p id="serverInfo">Pobieranie informacji o serwerze...</p>
+  <p class="small">anarchia2_0.aternos.me</p>
+  <button class="btn" onclick="loadServer()">Odśwież status</button>
  </div>
 </section>
 
 <section id="studio">
- <h2>🎬 KQ Studio</h2>
+ <h2 class="section-title">KQ <span>Studio</span></h2>
  <div class="grid">
-  <div class="card"><h3>TikTok</h3><p>Filmy i materiały KacpereQ.</p><a class="btn" href="https://www.tiktok.com/@kacpereq004">Otwórz profil</a></div>
-  <div class="card"><h3>Impostor by KacpereQ</h3><p>Autorski projekt rozrywkowy.</p></div>
-  <div class="card"><h3>Filmy</h3><div id="videos"></div></div>
+  <div class="card"><div class="icon">🎬</div><h3>Impostor by KacpereQ</h3><p>Autorski projekt rozrywkowy.</p></div>
+  <div class="card"><div class="icon">📱</div><h3>TikTok</h3><p>Filmy, materiały i gaming.</p><a class="btn" href="https://www.tiktok.com/@kacpereq004">Otwórz profil</a></div>
+  <div class="card"><div class="icon">▶️</div><h3>Filmy</h3><div id="videos"></div></div>
  </div>
 </section>
 
 <section id="setup">
- <h2>🖥️ KQ Setup</h2>
+ <h2 class="section-title">KQ <span>Setup</span></h2>
  <div class="grid">
-  <div class="card"><h3>PC Gaming</h3><p>Intel Core i5-12400F<br>RTX 3060<br>16 GB RAM</p></div>
-  <div class="card"><h3>Smartphone</h3><p>Samsung Galaxy S25 Ultra</p></div>
-  <div class="card"><h3>Software</h3><p>Windows 11, Minecraft, projekty webowe.</p></div>
+  <div class="card"><div class="icon">🖥️</div><h3>PC GAMING</h3><p>Intel Core i5-12400F<br>RTX 3060<br>16 GB RAM</p></div>
+  <div class="card"><div class="icon">📱</div><h3>SMARTPHONE</h3><p>Samsung Galaxy S25 Ultra</p></div>
+  <div class="card"><div class="icon">⚙️</div><h3>SOFTWARE</h3><p>Windows 11, Minecraft i projekty webowe.</p></div>
  </div>
 </section>
+</main>
 
 <footer>
- <p>© 2026 KacpereQ Gaming</p>
- <button onclick="openAdmin()">🔐 Centrum sterowania</button>
+ <div class="logo">KACPEREQ GAMING</div>
+ <p>© 2026 KacpereQ Gaming. All rights reserved.</p>
+ <button class="btn secondary" onclick="openAdmin()">🔐 Centrum sterowania</button>
 </footer>
 
 <div class="modal" id="adminModal">
  <div class="box">
   <div id="loginScreen">
    <h2>🔐 KQ ADMIN</h2>
-   <p>Wpisz PIN administracyjny</p>
+   <p>Wpisz klucz administracyjny</p>
    <div class="pin" id="pinDisplay">••••</div>
    <div class="keypad">
-    <button onclick="addPin(1)">1</button><button onclick="addPin(2)">2</button><button onclick="addPin(3)">3</button>
-    <button onclick="addPin(4)">4</button><button onclick="addPin(5)">5</button><button onclick="addPin(6)">6</button>
-    <button onclick="addPin(7)">7</button><button onclick="addPin(8)">8</button><button onclick="addPin(9)">9</button>
-    <button onclick="clearPin()">C</button><button onclick="addPin(0)">0</button><button onclick="backPin()">⌫</button>
+    <button class="btn" onclick="addPin(1)">1</button><button class="btn" onclick="addPin(2)">2</button><button class="btn" onclick="addPin(3)">3</button>
+    <button class="btn" onclick="addPin(4)">4</button><button class="btn" onclick="addPin(5)">5</button><button class="btn" onclick="addPin(6)">6</button>
+    <button class="btn" onclick="addPin(7)">7</button><button class="btn" onclick="addPin(8)">8</button><button class="btn" onclick="addPin(9)">9</button>
+    <button class="btn" onclick="clearPin()">C</button><button class="btn" onclick="addPin(0)">0</button><button class="btn" onclick="backPin()">⌫</button>
    </div>
    <p id="pinError"></p>
-   <button onclick="login()">ZALOGUJ</button>
-   <button onclick="closeAdmin()">ZAMKNIJ</button>
+   <button class="btn" onclick="login()">ZALOGUJ</button>
+   <button class="btn secondary" onclick="closeAdmin()">ZAMKNIJ</button>
   </div>
 
   <div id="controlPanel" class="hidden">
    <h2>🛠️ Centrum sterowania</h2>
    <h3>Dodaj aktualność</h3>
-   <input id="newsTitle" placeholder="Tytuł aktualności">
-   <textarea id="newsBody" placeholder="Treść aktualności"></textarea>
-   <button onclick="addNews()">Opublikuj</button>
+   <input id="newsTitle" placeholder="Tytuł">
+   <textarea id="newsBody" placeholder="Treść"></textarea>
+   <button class="btn" onclick="addNews()">Opublikuj</button>
 
-   <h3>Komunikat na stronie</h3>
-   <textarea id="noticeText" placeholder="Ważny komunikat"></textarea>
-   <button onclick="saveNotice()">Zapisz komunikat</button>
+   <h3>Komunikat strony</h3>
+   <textarea id="noticeText" placeholder="Komunikat"></textarea>
+   <button class="btn" onclick="saveNotice()">Zapisz</button>
 
    <h3>Dodaj film</h3>
    <input id="videoTitle" placeholder="Tytuł filmu">
    <input id="videoUrl" placeholder="Link do filmu">
-   <button onclick="addVideo()">Dodaj film</button>
+   <button class="btn" onclick="addVideo()">Dodaj film</button>
 
    <h3>Ranking graczy</h3>
-   <input id="rankName" placeholder="Nick gracza">
+   <input id="rankName" placeholder="Nick">
    <input id="rankPoints" type="number" placeholder="Punkty">
-   <button onclick="addRank()">Dodaj gracza</button>
+   <button class="btn" onclick="addRank()">Dodaj gracza</button>
 
-   <p class="small">Dane zapisują się w tej przeglądarce. PIN 1331 jest demonstracyjny i widoczny w kodzie strony.</p>
-   <button onclick="logout()">Wyloguj</button>
-   <button onclick="closeAdmin()">Zamknij</button>
+   <p class="small">PIN 1331 jest demonstracyjny. Dane są zapisywane tylko w tej przeglądarce. Nie są synchronizowane z innymi urządzeniami.</p>
+   <button class="btn" onclick="logout()">Wyloguj</button>
+   <button class="btn secondary" onclick="closeAdmin()">Zamknij</button>
   </div>
  </div>
 </div>
 
-<script>
-const $=id=>document.getElementById(id);
-let pin="";
-const get=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}};
-const put=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+<div id="egg">
+ <div>
+  <div class="logo">KQ SECRET SYSTEM</div>
+  <h2>YOU FOUND THE EASTER EGG!</h2>
+  <p>Gratulacje! Odkryłeś tajną stronę KacpereQ Gaming.</p>
+  <p>LEVEL: LEGENDARY</p>
+  <button class="btn" onclick="closeEgg()">WRÓĆ DO STRONY</button>
+ </div>
+</div>
 
-let news=get("kqNews",[
- {title:"Witamy na KacpereQ Gaming 2.0!",body:"Nowa odsłona strony już działa. Wkrótce kolejne aktualizacje!"}
-]);
-let videos=get("kqVideos",[]);
-let ranking=get("kqRanking",[]);
+<script>
+// LOADER
+window.addEventListener("load",()=>{
+ setTimeout(()=>{
+  $("loader").style.opacity="0";
+  setTimeout(()=>$("loader").remove(),650);
+ },1100);
+});
+
+// SKRÓT DO ELEMENTÓW
+function $(id){return document.getElementById(id)}
+function get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}}
+function put(k,v){localStorage.setItem(k,JSON.stringify(v))}
+
+// CZĄSTECZKI
+for(let i=0;i<55;i++){
+ let p=document.createElement("i");
+ p.className="particle";
+ p.style.left=Math.random()*100+"%";
+ p.style.top=Math.random()*100+"%";
+ p.style.animationDelay=Math.random()*8+"s";
+ p.style.animationDuration=5+Math.random()*9+"s";
+ $("particles").append(p);
+}
+
+// EASTER EGG: 5 KLIKNIĘĆ W LOGO KQ
+let logoClicks=0,logoTimer;
+$("logo").addEventListener("click",()=>{
+ logoClicks++;
+ clearTimeout(logoTimer);
+ logoTimer=setTimeout(()=>logoClicks=0,1800);
+ if(logoClicks>=5){
+  logoClicks=0;
+  $("egg").style.display="flex";
+ }
+});
+function closeEgg(){$("egg").style.display="none"}
+
+// ZEGAR
+function updateClock(){
+ $("clock").textContent=new Date().toLocaleTimeString("pl-PL");
+}
+setInterval(updateClock,1000);
+updateClock();
+
+// LOKALNE STATYSTYKI
 let visits=get("kqVisits",0)+1;
 put("kqVisits",visits);
 $("visits").textContent=visits;
 
-function clock(){
- $("clock").textContent=new Date().toLocaleTimeString("pl-PL");
-}
-setInterval(clock,1000);clock();
+// DANE
+let news=get("kqNews",[
+ {title:"Witamy w KacpereQ Gaming 2.0!",body:"Nowa odsłona strony jest już dostępna!"}
+]);
+let videos=get("kqVideos",[]);
+let ranking=get("kqRanking",[]);
 
-let tabs=get("kqTabs",0)+1;
-put("kqTabs",tabs);
-$("online").textContent=tabs;
+// AKTYWNE KARTY W TEJ SAMEJ PRZEGLĄDARCE
+const tabId=Math.random().toString(36).slice(2);
+function updateTabs(){
+ let tabs=get("kqTabs",{});
+ let now=Date.now();
+ tabs[tabId]=now;
+ for(let id in tabs)if(now-tabs[id]>12000)delete tabs[id];
+ put("kqTabs",tabs);
+ $("online").textContent=Object.keys(tabs).length;
+}
+updateTabs();
+setInterval(updateTabs,5000);
 window.addEventListener("beforeunload",()=>{
- put("kqTabs",Math.max(0,get("kqTabs",1)-1));
+ let tabs=get("kqTabs",{});
+ delete tabs[tabId];
+ put("kqTabs",tabs);
 });
 
+// AKTUALNOŚCI
 function renderNews(){
  $("newsList").innerHTML="";
  news.forEach(n=>{
-  let div=document.createElement("div");
-  div.className="news";
+  let item=document.createElement("div");
+  item.className="news-item";
   let h=document.createElement("h3");
   let p=document.createElement("p");
   h.textContent=n.title;p.textContent=n.body;
-  div.append(h,p);$("newsList").append(div);
+  item.append(h,p);
+  $("newsList").append(item);
  });
  $("newsCount").textContent=news.length;
 }
+
+// FILMY
 function renderVideos(){
  $("videos").innerHTML="";
  videos.forEach(v=>{
   let a=document.createElement("a");
-  a.href=v.url;a.target="_blank";a.textContent=v.title;
-  a.className="btn";$("videos").append(a);
+  a.className="btn";
+  a.textContent=v.title;
+  a.href=v.url;
+  a.target="_blank";
+  a.rel="noopener noreferrer";
+  $("videos").append(a);
  });
 }
+
+// RANKING
 function renderRanking(){
  $("ranking").innerHTML="";
- ranking.sort((a,b)=>b.points-a.points).forEach(r=>{
+ [...ranking].sort((a,b)=>b.points-a.points).forEach((r,i)=>{
   let p=document.createElement("p");
-  p.textContent=r.name+" — "+r.points+" pkt";
+  p.textContent=(i+1)+". "+r.name+" — "+r.points+" pkt";
   $("ranking").append(p);
  });
 }
 renderNews();renderVideos();renderRanking();
 
-function openAdmin(){
- $("adminModal").style.display="flex";
-}
-function closeAdmin(){
- $("adminModal").style.display="none";
-}
+// ADMIN
+let pin="";
+function openAdmin(){$("adminModal").style.display="flex"}
+function closeAdmin(){$("adminModal").style.display="none"}
 function addPin(n){
  if(pin.length<4)pin+=n;
- $("pinDisplay").textContent=pin.padEnd(4,"•").split("").join(" ");
+ $("pinDisplay").textContent="●".repeat(pin.length)+"○".repeat(4-pin.length);
 }
-function clearPin(){pin="";$("pinDisplay").textContent="••••";}
-function backPin(){pin=pin.slice(0,-1);$("pinDisplay").textContent=pin.padEnd(4,"•").split("").join(" ");}
+function clearPin(){pin="";$("pinDisplay").textContent="••••"}
+function backPin(){pin=pin.slice(0,-1);$("pinDisplay").textContent="●".repeat(pin.length)+"○".repeat(4-pin.length)}
 function login(){
  if(pin==="1331"){
   $("loginScreen").classList.add("hidden");
@@ -297,59 +489,64 @@ function logout(){
  clearPin();
 }
 function addNews(){
- let title=$("newsTitle").value.trim(),body=$("newsBody").value.trim();
- if(!title||!body)return alert("Uzupełnij tytuł i treść!");
+ let title=$("newsTitle").value.trim();
+ let body=$("newsBody").value.trim();
+ if(!title||!body)return alert("Uzupełnij pola!");
  news.push({title,body});
  put("kqNews",news);renderNews();
  $("newsTitle").value="";$("newsBody").value="";
- alert("Aktualność dodana!");
 }
 function saveNotice(){
- let notice=$("noticeText").value.trim();
- put("kqNotice",notice);
- showNotice();alert("Komunikat zapisany!");
+ put("kqNotice",$("noticeText").value.trim());
+ showNotice();
+ alert("Komunikat zapisany!");
 }
 function showNotice(){
- let old=$("noticeBar");if(old)old.remove();
  let text=get("kqNotice","");
- if(text){
-  let bar=document.createElement("div");
-  bar.id="noticeBar";
-  bar.style="padding:15px;text-align:center;background:#55218a;color:white";
-  bar.textContent="📢 "+text;
-  document.body.insertBefore(bar,document.querySelector("header"));
- }
+ $("notice").style.display=text?"block":"none";
+ $("notice").textContent=text?"📢 "+text:"";
 }
 function addVideo(){
- let title=$("videoTitle").value.trim(),url=$("videoUrl").value.trim();
- if(!title||!url)return alert("Uzupełnij oba pola!");
- try{new URL(url)}catch{return alert("Nieprawidłowy link!")}
- videos.push({title,url});put("kqVideos",videos);renderVideos();
+ let title=$("videoTitle").value.trim();
+ let url=$("videoUrl").value.trim();
+ if(!title||!url)return alert("Uzupełnij pola!");
+ try{
+  let parsed=new URL(url);
+  if(!["https:","http:"].includes(parsed.protocol))throw Error();
+ }catch{return alert("Podaj poprawny link http lub https!")}
+ videos.push({title,url});
+ put("kqVideos",videos);renderVideos();
  $("videoTitle").value="";$("videoUrl").value="";
 }
 function addRank(){
- let name=$("rankName").value.trim(),points=Number($("rankPoints").value);
- if(!name||!Number.isFinite(points)||points<0)return alert("Uzupełnij dane!");
- ranking.push({name,points});put("kqRanking",ranking);renderRanking();
+ let name=$("rankName").value.trim();
+ let points=Number($("rankPoints").value);
+ if(!name||$("rankPoints").value===""||!Number.isFinite(points)||points<0)return alert("Podaj nick i poprawną liczbę punktów!");
+ ranking.push({name,points});
+ put("kqRanking",ranking);renderRanking();
  $("rankName").value="";$("rankPoints").value="";
 }
 showNotice();
 
+// STATUS MINECRAFT
 async function loadServer(){
- $("serverStatus").textContent="Sprawdzanie statusu...";
+ $("serverStatus").textContent="Sprawdzanie...";
+ $("serverDot").style.background="#aaa";
  try{
-  const r=await fetch("https://api.mcsrvstat.us/3/anarchia2_0.aternos.me");
-  const d=await r.json();
+  let r=await fetch("https://api.mcsrvstat.us/3/anarchia2_0.aternos.me");
+  let d=await r.json();
   if(d.online){
-   $("serverStatus").textContent="🟢 SERWER ONLINE";
+   $("serverStatus").textContent="SERWER ONLINE";
+   $("serverDot").style.background="#22c55e";
    $("serverInfo").textContent="Gracze: "+d.players.online+"/"+d.players.max;
   }else{
-   $("serverStatus").textContent="🔴 SERWER OFFLINE";
+   $("serverStatus").textContent="SERWER OFFLINE";
+   $("serverDot").style.background="#ef4444";
    $("serverInfo").textContent="Serwer jest obecnie wyłączony.";
   }
  }catch{
-  $("serverStatus").textContent="Nie udało się pobrać statusu";
-  $("serverInfo").textContent="Sprawdź połączenie internetowe.";
+  $("serverStatus").textContent="STATUS NIEDOSTĘPNY";
+  $("serverInfo").textContent="Nie udało się pobrać informacji.";
  }
 }
 loadServer();
